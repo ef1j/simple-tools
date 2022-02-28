@@ -1,0 +1,12 @@
+#!/bin/bash
+# city weather by zone
+# zones at https://www.weather.gov/pimar/PubZone
+# 60 = Reading
+# for all voices, use say -v '?'
+# Good voices: Karen, Samantha
+if [ $# -gt 0 ]; then
+    zone=$1
+else zone="71"
+fi
+
+curl -s https://tgftp.nws.noaa.gov/data/forecasts/zone/pa/paz0"$zone".txt | tail -n +15 | sed 's/^\.// ; s/\.\.\./\. /' | say -v Samantha
