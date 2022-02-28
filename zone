@@ -1,0 +1,36 @@
+#!/bin/bash
+# zone [-u] [-s STATE] [ZONE]
+# city weather by zone with urgent notice flag and state option
+# Version 29 JAN 2022
+#
+# zones at https://www.weather.gov/pimar/PubZone
+# 060 = Reading
+
+usage() { echo "Usage: $0 [-u] [-s STATE] [ZONE]" 1>&2; exit 1; }
+
+# default values
+UFLAG=0
+STATE="pa"
+ZONE="071"
+
+while getopts "us:" flag
+do
+    case "${flag}" in 
+	u) UFLAG=1;;
+	s) STATE=${OPTARG};;
+	*) usage;;
+    esac
+done
+shift $((OPTIND -1))
+
+# Set the zone if included
+if [ $@ ]; then
+    ZONE=$@
+fi
+
+# curl command
+if [ $UFLAG == 1 ]; then
+   curl -s https://tgftp.nws.noaa.gov/data/watches_warnings/urgent_weather_message/"$STATE"/"$STATE"z"$ZONE".txt
+else
+    curl -s https://tgftp.nws.noaa.gov/data/forecasts/zone/"$STATE"/"$STATE"z"$ZONE".txt
+fi

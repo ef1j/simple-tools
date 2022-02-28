@@ -1,0 +1,7 @@
+#!/bin/bash
+# taf script
+# this version for BSD
+if [ $1 ]; then
+   temp=$(echo $1 | awk '{ print toupper($0)}')
+   curl -s https://tgftp.nws.noaa.gov/data/forecasts/taf/stations/$temp.TXT | fold -sw 72
+fi

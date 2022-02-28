@@ -1,0 +1,4 @@
+#!/bin/bash
+# issue a form feed to the diablo
+
+printf "\014" | lp -d diablo

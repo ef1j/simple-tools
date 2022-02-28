@@ -1,0 +1,7 @@
+#!/bin/bash
+# metar script
+# see: https://www.weather.gov/tg/engfiles
+if [ $1 ]; then
+   temp=$(echo $1 | awk '{ print toupper($0)}')
+   curl -s https://tgftp.nws.noaa.gov/data/observations/metar/decoded/$temp.TXT | fold -sw 72
+fi
