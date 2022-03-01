@@ -1,2 +1,2 @@
 # simple-tools
-Short scripts and hacks
+Small scripts and hacks.
