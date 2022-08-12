@@ -1,0 +1,14 @@
+# some more ls aliases
+
+alias ll='ls -l'
+alias la='ls -A'
+alias lt='ls -t'
+alias ls='ls -F'
+alias llt='ls -lt'
+
+alias ru='rm -i *~'
+alias emacs='emacs -nw'
+
+alias hda="hexdump -e '\"%3_ax:\"\" \"' -e '16/1 \"%02X \"' -e '\"\n\"'"
+alias hdna="hexdump -e '16/1 \"%02X \"' -e '\"\n\"'"
+
